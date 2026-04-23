@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LITT NYC™ — New York City Clothing Brand</title>
+  <meta name="description" content="LITT NYC™ — Premium New York City clothing. If You Know, You Know." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===================== ANNOUNCEMENT BAR ===================== -->
+  <div class="announce-bar" id="announceBar">
+    <div class="announce-inner">
+      <span>🔥 DROP 001 — THE BOROUGH COLLECTION — LIVE NOW &nbsp;|&nbsp; FREE SHIPPING ON ORDERS $150+ &nbsp;|&nbsp; USE CODE <strong>LITTNYC10</strong> FOR 10% OFF</span>
+      <span>🔥 DROP 001 — THE BOROUGH COLLECTION — LIVE NOW &nbsp;|&nbsp; FREE SHIPPING ON ORDERS $150+ &nbsp;|&nbsp; USE CODE <strong>LITTNYC10</strong> FOR 10% OFF</span>
+    </div>
+    <button class="announce-close" id="announceClose" aria-label="Close">✕</button>
+  </div>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <header class="nav-header" id="navHeader">
+    <div class="nav-container">
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a href="#" class="nav-logo" aria-label="LITT NYC Home">
+        <img src="./assets/main-logo.png" alt="Litt NYC" class="nav-logo-img" />
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#new-drops" class="nav-link">NEW DROPS</a>
+        <a href="#shop" class="nav-link">SHOP</a>
+        <a href="#lookbook" class="nav-link">LOOKBOOK</a>
+        <a href="#about" class="nav-link">OUR STORY</a>
+        <a href="#collab" class="nav-link nav-link--hot">COLLAB ↗</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="nav-icon-btn" id="searchBtn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button class="nav-icon-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="nav-icon-btn nav-cart-btn" id="cartBtn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#new-drops" class="mobile-link">NEW DROPS</a>
+      <a href="#shop" class="mobile-link">SHOP</a>
+      <a href="#lookbook" class="mobile-link">LOOKBOOK</a>
+      <a href="#about" class="mobile-link">OUR STORY</a>
+      <a href="#collab" class="mobile-link">COLLAB</a>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero-media">
+      <img
+        src="./assets/hero_banner.png"
+        alt="LITT NYC — New York City Street Style"
+        class="hero-img"
+        id="heroImg"
+      />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+
+      <!-- LEFT: editorial text + CTAs -->
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-line"></span>
+          NEW YORK CITY &nbsp;·&nbsp; EST. 2026
+          <span class="eyebrow-line"></span>
+        </div>
+        <h1 class="hero-title">
+          <span class="hero-title-line">BORN</span>
+          <span class="hero-title-line hero-title-italic">in the</span>
+          <span class="hero-title-line">CITY</span>
+        </h1>
+        <p class="hero-sub">Drop 001 — The Borough Collection — Limited Run</p>
+        <div class="hero-ctas">
+          <a href="#shop" class="btn btn--primary">Shop The Drop</a>
+          <a href="#lookbook" class="btn btn--ghost">View Lookbook</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: large script logo -->
+      <div class="hero-right">
+        <img src="./assets/main-logo.png" alt="Litt NYC" class="hero-logo-img" />
+      </div>
+
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <!-- Stats Strip -->
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">001</span>
+        <span class="stat-label">Current Drop</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">62</span>
+        <span class="stat-label">Units Left</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">NYC</span>
+        <span class="stat-label">Born & Based</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">2026</span>
+        <span class="stat-label">Established</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span>LITT NYC</span>
+      <span class="marquee-dot">●</span>
+      <span>NEW YORK CITY</span>
+      <span class="marquee-dot">●</span>
+      <span>IF YOU KNOW YOU KNOW</span>
+      <span class="marquee-dot">●</span>
+      <span>DROP 001</span>
+      <span class="marquee-dot">●</span>
+      <span>THE BOROUGH COLLECTION</span>
+      <span class="marquee-dot">●</span>
+      <span>EST. 2026</span>
+      <span class="marquee-dot">●</span>
+      <span>LITT NYC</span>
+      <span class="marquee-dot">●</span>
+      <span>NEW YORK CITY</span>
+      <span class="marquee-dot">●</span>
+      <span>IF YOU KNOW YOU KNOW</span>
+      <span class="marquee-dot">●</span>
+      <span>DROP 001</span>
+      <span class="marquee-dot">●</span>
+      <span>THE BOROUGH COLLECTION</span>
+      <span class="marquee-dot">●</span>
+      <span>EST. 2026</span>
+      <span class="marquee-dot">●</span>
+    </div>
+  </div>
+
+  <!-- ===================== NEW DROPS ===================== -->
+  <section class="section new-drops" id="new-drops">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">/ DROP 001</div>
+        <h2 class="section-title">THE BOROUGH<br /><em>COLLECTION</em></h2>
+        <p class="section-desc">Cut from the concrete. Finished with fire. Worn by those who already know.</p>
+      </div>
+
+      <div class="drops-grid">
+        <!-- Featured Large Drop -->
+        <article class="drop-card drop-card--featured" data-product-id="1">
+          <div class="drop-card__media">
+            <img src="./assets/product_bomber.png" alt="Borough Bomber Jacket" class="drop-card__img" />
+            <div class="drop-card__overlay">
+              <button class="quick-add-btn" data-id="1" data-name="Borough Bomber" data-price="289">QUICK ADD</button>
+            </div>
+            <div class="drop-card__badges">
+              <span class="badge badge--new">NEW</span>
+              <span class="badge badge--limited">LIMITED</span>
+            </div>
+          </div>
+          <div class="drop-card__info">
+            <div class="drop-card__category">OUTERWEAR</div>
+            <h3 class="drop-card__name">BOROUGH BOMBER</h3>
+            <div class="drop-card__bottom">
+              <span class="drop-card__price">$289</span>
+              <div class="drop-card__sizes">
+                <span class="size-chip">S</span>
+                <span class="size-chip">M</span>
+                <span class="size-chip">L</span>
+                <span class="size-chip size-chip--sold">XL</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Standard cards -->
+        <article class="drop-card" data-product-id="2">
+          <div class="drop-card__media">
+            <img src="./assets/product_hoodie.png" alt="Litt NYC Hoodie" class="drop-card__img" />
+            <div class="drop-card__overlay">
+              <button class="quick-add-btn" data-id="2" data-name="Litt NYC Hoodie" data-price="145">QUICK ADD</button>
+            </div>
+            <div class="drop-card__badges">
+              <span class="badge badge--new">NEW</span>
+            </div>
+          </div>
+          <div class="drop-card__info">
+            <div class="drop-card__category">TOPS</div>
+            <h3 class="drop-card__name">LITT NYC HOODIE</h3>
+            <div class="drop-card__bottom">
+              <span class="drop-card__price">$145</span>
+              <div class="drop-card__sizes">
+                <span class="size-chip">S</span>
+                <span class="size-chip">M</span>
+                <span class="size-chip">L</span>
+                <span class="size-chip">XL</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="drop-card" data-product-id="3">
+          <div class="drop-card__media">
+            <img src="./assets/product_cargo.png" alt="NYC Cargo Pants" class="drop-card__img" />
+            <div class="drop-card__overlay">
+              <button class="quick-add-btn" data-id="3" data-name="NYC Cargo Pants" data-price="198">QUICK ADD</button>
+            </div>
+          </div>
+          <div class="drop-card__info">
+            <div class="drop-card__category">BOTTOMS</div>
+            <h3 class="drop-card__name">NYC CARGO</h3>
+            <div class="drop-card__bottom">
+              <span class="drop-card__price">$198</span>
+              <div class="drop-card__sizes">
+                <span class="size-chip">28</span>
+                <span class="size-chip">30</span>
+                <span class="size-chip">32</span>
+                <span class="size-chip size-chip--sold">34</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SHOP / FULL CATALOG ===================== -->
+  <section class="section shop-section" id="shop">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">/ THE COLLECTION</div>
+        <h2 class="section-title">SHOP<br /><em>ALL</em></h2>
+      </div>
+
+      <!-- Filters -->
+      <div class="shop-filters">
+        <button class="filter-btn filter-btn--active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="tops">Tops</button>
+        <button class="filter-btn" data-filter="bottoms">Bottoms</button>
+        <button class="filter-btn" data-filter="outerwear">Outerwear</button>
+        <button class="filter-btn" data-filter="accessories">Accessories</button>
+      </div>
+
+      <div class="shop-grid" id="shopGrid">
+        <!-- Products injected by JS -->
+      </div>
+
+      <div class="shop-load-more">
+        <button class="btn btn--outline" id="loadMoreBtn">Load More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LOOKBOOK ===================== -->
+  <section class="lookbook-section" id="lookbook">
+    <div class="lookbook-header container">
+      <div class="section-label">/ BOROUGH ARCHIVE</div>
+      <h2 class="section-title">NEW YORK<br /><em>ALWAYS LITT</em></h2>
+    </div>
+
+    <div class="lookbook-grid">
+      <!-- CHAPTER I — tall feature tile -->
+      <div class="lb-item lb-item--tall">
+        <img src="./assets/lookbook_harlem.png" alt="Harlem Nights" class="lb-img" />
+        <div class="lb-overlay">
+          <span class="lb-tag">CHAPTER I</span>
+          <h3 class="lb-title">HARLEM<br/>NIGHTS</h3>
+          <p class="lb-desc">The brownstones never sleep.</p>
+        </div>
+      </div>
+
+      <!-- CHAPTER II -->
+      <div class="lb-item">
+        <img src="./assets/lookbook_brooklyn.png" alt="Brooklyn Fire" class="lb-img" />
+        <div class="lb-overlay">
+          <span class="lb-tag">CHAPTER II</span>
+          <h3 class="lb-title">BROOKLYN FIRE</h3>
+          <p class="lb-desc">Skyline on our back.</p>
+        </div>
+      </div>
+
+      <!-- CHAPTER III -->
+      <div class="lb-item">
+        <img src="./assets/lookbook_bronx.png" alt="The Bronx Bloc" class="lb-img" />
+        <div class="lb-overlay">
+          <span class="lb-tag">CHAPTER III</span>
+          <h3 class="lb-title">THE BRONX BLOC</h3>
+          <p class="lb-desc">Born in the borough.</p>
+        </div>
+      </div>
+
+      <!-- CHAPTER IV — wide tile -->
+      <div class="lb-item lb-item--wide">
+        <img src="./assets/lookbook_queens.png" alt="Queens Energy" class="lb-img" style="object-position: center 40%;" />
+        <div class="lb-overlay">
+          <span class="lb-tag">CHAPTER IV</span>
+          <h3 class="lb-title">QUEENS ENERGY</h3>
+          <p class="lb-desc">Five deep. One movement.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container lookbook-cta">
+      <a href="#" class="btn btn--primary">Enter The Archive</a>
+    </div>
+  </section>
+
+
+  <!-- ===================== ABOUT / EDITORIAL ===================== -->
+  <section class="about-section" id="about">
+    <div class="about-grid container">
+      <div class="about-text">
+        <div class="section-label">/ OUR STORY</div>
+        <h2 class="about-title">BORN IN<br /><em>NEW YORK</em><br />BUILT FOR<br />THE CITY</h2>
+        <p class="about-body">LITT NYC launched from the streets of New York City in 2026 — no hype cycles, no manufactured clout. Just clean cuts, premium fabric, and a city that never lies about what's real.</p>
+        <p class="about-body">Every piece is a love letter to New York. Designed for people who move through the five boroughs with purpose, style, and a quiet confidence that only comes with knowing.</p>
+        <div class="about-values">
+          <div class="value-pill">Small Batch</div>
+          <div class="value-pill">NYC Made</div>
+          <div class="value-pill">No Hype</div>
+          <div class="value-pill">Premium Cuts</div>
+        </div>
+        <a href="#" class="btn btn--primary">Read Our Story</a>
+      </div>
+      <div class="about-visual">
+        <div class="about-img-wrap">
+          <!-- Old English logo as visual centrepiece -->
+          <div class="about-logo-panel">
+            <img src="./assets/logo2.png" alt="LITT NYC EST. 2026" class="about-logo-img" />
+          </div>
+          <div class="about-img-tag">
+            <span>DROP 001</span>
+            <strong>THE BOROUGH COLLECTION</strong>
+          </div>
+        </div>
+        <div class="about-quote">
+          <blockquote>"New York made us. Now we make New York wear."</blockquote>
+          <cite>— LITT NYC, Founder</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MOTTO SECTION ===================== -->
+  <section class="motto-section">
+    <div class="container motto-inner">
+      <img src="./assets/motto.png" alt="If You Know You Know" class="motto-full-img" />
+    </div>
+  </section>
+
+  <!-- ===================== COLLAB / PRESS ===================== -->
+  <section class="press-section" id="collab">
+    <div class="container">
+      <div class="section-label" style="text-align:center;">/ AS SEEN IN</div>
+      <div class="press-logos">
+        <div class="press-logo">COMPLEX</div>
+        <div class="press-logo">HYPEBEAST</div>
+        <div class="press-logo">HIGHSNOBIETY</div>
+        <div class="press-logo">VOGUE</div>
+        <div class="press-logo">DAZED</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NEWSLETTER ===================== -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="newsletter-text">
+          <div class="section-label">/ JOIN THE FAMILY</div>
+          <h2 class="newsletter-title">GET EARLY<br /><em>ACCESS</em></h2>
+          <p>Drop alerts. Exclusive collabs. Members-only pricing. No spam — ever.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm">
+          <div class="form-group">
+            <input type="email" id="emailInput" placeholder="your@email.com" class="form-input" required />
+            <button type="submit" class="btn btn--primary form-submit">JOIN</button>
+          </div>
+          <p class="form-note">By joining, you agree to our <a href="#">Privacy Policy</a>. Unsubscribe anytime.</p>
+          <div class="form-success" id="formSuccess">✓ Welcome to the family. Check your inbox.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="./assets/main-logo.png" alt="Litt NYC" class="footer-logo-img" />
+        </div>
+        <p class="footer-tagline">Born in New York.<br />Built for the City.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.17 8.17 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter/X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>SHOP</h4>
+        <ul>
+          <li><a href="#">New Drops</a></li>
+          <li><a href="#">Tops</a></li>
+          <li><a href="#">Bottoms</a></li>
+          <li><a href="#">Outerwear</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>INFO</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Lookbook</a></li>
+          <li><a href="#">Collaborations</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Sustainability</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>SUPPORT</h4>
+        <ul>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom container">
+      <p>© 2026 LITT NYC™ LLC. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+      <div class="footer-payments">
+        <span>VISA</span>
+        <span>MC</span>
+        <span>AMEX</span>
+        <span>PAYPAL</span>
+        <span>SHOP PAY</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== CART DRAWER ===================== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart">
+    <div class="cart-drawer__header">
+      <h3>YOUR BAG <span class="cart-count" id="cartCount">(0)</span></h3>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-drawer__body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <div class="cart-empty-icon">🛒</div>
+        <p>Your bag is empty.</p>
+        <a href="#shop" class="btn btn--primary" id="cartShopBtn">Shop Now</a>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+    </div>
+    <div class="cart-drawer__footer" id="cartFooter" style="display:none;">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <button class="btn btn--primary btn--full">Checkout</button>
+      <p class="cart-note">Shipping &amp; taxes calculated at checkout</p>
+    </div>
+  </div>
+
+  <!-- ===================== SEARCH OVERLAY ===================== -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-inner">
+      <button class="search-close" id="searchClose">✕</button>
+      <form class="search-form" onsubmit="return false;">
+        <input type="search" class="search-input" id="searchInput" placeholder="SEARCH DROPS, STYLES..." autocomplete="off" />
+        <button type="submit" class="search-submit">→</button>
+      </form>
+      <div class="search-popular">
+        <p>Popular:</p>
+        <div class="search-tags">
+          <a href="#">Bomber</a>
+          <a href="#">Hoodie</a>
+          <a href="#">Cargo</a>
+          <a href="#">Cap</a>
+          <a href="#">Drop 001</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TOAST ===================== -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
