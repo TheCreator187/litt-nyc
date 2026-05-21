@@ -297,9 +297,10 @@ ul { list-style: none; }
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
+  animation: kenBurns 40s ease-in-out infinite;
 }
 
-/* Heavier left gradient so text reads cleanly, photo shows on right */
+/* Heavier left gradient so text reads cleanly, photo shows on right, plus radial gold blend */
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -307,15 +308,32 @@ ul { list-style: none; }
     linear-gradient(
       to right,
       rgba(5,5,5,0.96) 0%,
-      rgba(5,5,5,0.82) 38%,
-      rgba(5,5,5,0.45) 62%,
-      rgba(5,5,5,0.15) 100%
+      rgba(5,5,5,0.85) 35%,
+      rgba(5,5,5,0.3) 70%,
+      rgba(5,5,5,0.05) 100%
     ),
     linear-gradient(
       to top,
       rgba(5,5,5,1) 0%,
-      rgba(5,5,5,0) 35%
+      rgba(5,5,5,0) 30%
+    ),
+    radial-gradient(
+      circle at 75% 40%,
+      rgba(201, 168, 76, 0.12) 0%,
+      transparent 80%
     );
+}
+
+@keyframes kenBurns {
+  0% {
+    transform: scale(1.0) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, -0.5%);
+  }
+  100% {
+    transform: scale(1.0) translate(0, 0);
+  }
 }
 
 /* Content: full-width flex row */
