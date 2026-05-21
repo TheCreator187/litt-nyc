@@ -404,11 +404,235 @@ $$('a[href^="#"]').forEach(a => {
   });
 });
 
+// ============ TV STATIC EFFECT ============
+function initTVStatic() {
+  const canvas = document.getElementById('heroStaticCanvas');
+  const hero = document.getElementById('hero');
+  if (!canvas || !hero) return;
+
+  const ctx = canvas.getContext('2d');
+  let animationFrameId;
+  let staticBurstActive = 0; // 0 to 1 intensity
+  let autoLoopTimeout;
+  let isInitialized = true;
+  
+  // Mouse tracking state
+  const mouse = {
+    x: -1000,
+    y: -1000,
+    active: false,
+    speedX: 0,
+    speedY: 0,
+    lastX: 0,
+    lastY: 0,
+    velocity: 0
+  };
+
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    // 4x downscaling for retro chunky pixels & performance
+    canvas.width = Math.floor(rect.width / 4) || 256;
+    canvas.height = Math.floor(rect.height / 4) || 144;
+  }
+
+  function cleanup() {
+    isInitialized = false;
+    cancelAnimationFrame(animationFrameId);
+    clearTimeout(autoLoopTimeout);
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  // Mouse event listeners
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    mouse.speedX = x - mouse.lastX;
+    mouse.speedY = y - mouse.lastY;
+    // Calculate velocity for motion-based tearing
+    mouse.velocity = Math.sqrt(mouse.speedX * mouse.speedX + mouse.speedY * mouse.speedY);
+    
+    mouse.x = x;
+    mouse.y = y;
+    mouse.lastX = x;
+    mouse.lastY = y;
+    mouse.active = true;
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    mouse.active = false;
+    mouse.velocity = 0;
+  });
+
+  // Trigger static burst animation
+  function triggerStaticBurst() {
+    if (!isInitialized) return;
+    const media = hero.querySelector('.hero-media');
+    if (media) {
+      media.classList.add('crt-glitch');
+      staticBurstActive = 1.0;
+      
+      // Set CSS custom property for image resolution recovery over 3s
+      document.documentElement.style.setProperty('--static-opacity', '0.22');
+      document.documentElement.style.setProperty('--scanlines-opacity', '0.85');
+      
+      setTimeout(() => {
+        if (!isInitialized) return;
+        media.classList.remove('crt-glitch');
+        // Fade out static and scanlines over 2.5s while image sharpens
+        document.documentElement.style.setProperty('--static-opacity', '0');
+        document.documentElement.style.setProperty('--scanlines-opacity', '0');
+      }, 650);
+    }
+  }
+
+  // CRT Channel switch click trigger
+  hero.addEventListener('click', (e) => {
+    // Avoid triggering on links or buttons
+    if (e.target.closest('a') || e.target.closest('button')) {
+      return;
+    }
+    
+    clearTimeout(autoLoopTimeout);
+    triggerStaticBurst();
+    scheduleNextBurst();
+  });
+
+  // Schedule the next automatic burst
+  function scheduleNextBurst() {
+    if (!isInitialized) return;
+    clearTimeout(autoLoopTimeout);
+    // 3s static + ~2.5s fade = ~5.5s, schedule next at 6s
+    autoLoopTimeout = setTimeout(() => {
+      triggerStaticBurst();
+      scheduleNextBurst();
+    }, 6000);
+  }
+
+  // Main rendering loop
+  function render() {
+    if (!isInitialized) return;
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    if (width === 0 || height === 0) {
+      animationFrameId = requestAnimationFrame(render);
+      return;
+    }
+
+    const imgData = ctx.createImageData(width, height);
+    const data = imgData.data;
+
+    // Decay the static burst intensity
+    if (staticBurstActive > 0) {
+      staticBurstActive -= 0.035;
+      if (staticBurstActive < 0) staticBurstActive = 0;
+    }
+
+    // Map mouse position to canvas scale
+    const rect = hero.getBoundingClientRect();
+    const canvasMouseX = mouse.x * (width / rect.width);
+    const canvasMouseY = mouse.y * (height / rect.height);
+    
+    // Magnetic interference radius (canvas space)
+    const distThreshold = 35 + (mouse.velocity * 0.4); 
+
+    // Generate base static noise (grayscale vs chromatic)
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const idx = (y * width + x) * 4;
+        const val = Math.random() * 255;
+        
+        let isNearMouse = false;
+        let dist = 0;
+        
+        if (mouse.active) {
+          const dx = x - canvasMouseX;
+          const dy = y - canvasMouseY;
+          dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < distThreshold) {
+            isNearMouse = true;
+          }
+        }
+
+        if (staticBurstActive > 0.1) {
+          // Intense multi-colored glitch burst during channel switch
+          data[idx]     = Math.random() * 255;
+          data[idx + 1] = Math.random() * 255;
+          data[idx + 2] = Math.random() * 255;
+          data[idx + 3] = 255;
+        } else if (isNearMouse) {
+          // Magnetic chromatic aberration near mouse
+          const factor = Math.pow(1 - dist / distThreshold, 1.5);
+          const valR = Math.random() * 255;
+          const valG = Math.random() * 255;
+          const valB = Math.random() * 255;
+          
+          data[idx]     = val * (1 - factor) + valR * factor;
+          data[idx + 1] = val * (1 - factor) + valG * factor;
+          data[idx + 2] = val * (1 - factor) + valB * factor;
+          data[idx + 3] = 255;
+        } else {
+          // Grayscale base static
+          data[idx]     = val;
+          data[idx + 1] = val;
+          data[idx + 2] = val;
+          data[idx + 3] = 255;
+        }
+      }
+    }
+
+    ctx.putImageData(imgData, 0, 0);
+
+    // Apply horizontal slice tearing (GPU accelerated shifts via drawImage)
+    const glitchChance = 0.08 + (mouse.velocity * 0.015) + (staticBurstActive * 0.6);
+    if (Math.random() < glitchChance) {
+      const numTears = Math.floor(Math.random() * 4) + 1 + Math.floor(staticBurstActive * 6);
+      for (let t = 0; t < numTears; t++) {
+        const tearHeight = Math.floor(Math.random() * 20) + 4;
+        const tearY = Math.floor(Math.random() * (height - tearHeight));
+        // Calculate shift (larger during bursts or high speed mouse movements)
+        const maxShift = 20 + Math.floor(mouse.velocity * 0.8) + Math.floor(staticBurstActive * 80);
+        const shift = Math.floor((Math.random() - 0.5) * maxShift);
+        
+        ctx.drawImage(canvas, 0, tearY, width, tearHeight, shift, tearY, width, tearHeight);
+
+        // Chromatic split edge lines
+        if (Math.random() > 0.4) {
+          ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255, 0, 100, 0.6)' : 'rgba(0, 255, 255, 0.6)';
+          ctx.fillRect(0, tearY + Math.floor(Math.random() * tearHeight), width, 1);
+        }
+      }
+    }
+
+    // Dampen mouse velocity tracking gradually
+    if (mouse.velocity > 0) {
+      mouse.velocity *= 0.95;
+    }
+
+    animationFrameId = requestAnimationFrame(render);
+  }
+
+  animationFrameId = requestAnimationFrame(render);
+  
+  // Start the auto-loop when user is on hero page
+  scheduleNextBurst();
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', cleanup);
+  
+  return cleanup;
+}
+
 // ============ INIT ============
 document.addEventListener('DOMContentLoaded', () => {
   renderShop('all');
   updateCartUI();
   initReveal();
+  initTVStatic();
   console.log('%cLITT NYC™', 'font-size:2rem;font-weight:900;letter-spacing:0.1em;color:#c9a84c;');
   console.log('%cIf You Know, You Know.', 'color:#888;font-size:0.8rem;letter-spacing:0.1em;');
 });
